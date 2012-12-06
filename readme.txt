@@ -1,7 +1,7 @@
 === WP Clean Up ===
 Contributors: boliquan
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=SKA6TPPWSATKG&item_name=BoLiQuan&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=CA&bn=PP%2dDonationsBF&charset=UTF%2d8
-Tags: wp clean up,clean,cleaner,cleanup,database,mysql,comments,posts,delete,optimize,revision,draft,auto draft,moderated,spam,trash
+Tags: wp clean up,clean,cleaner,cleanup,database,mysql,comments,posts,post revisions,optimize,optimize database,revision,draft,auto draft,moderated,spam,trash
 License: GPLv2
 Requires at least: 2.7
 Tested up to: 3.4.2
