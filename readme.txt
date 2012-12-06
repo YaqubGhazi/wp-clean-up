@@ -1,7 +1,7 @@
 === WP Clean Up ===
 Contributors: boliquan
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=SKA6TPPWSATKG&item_name=BoLiQuan&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=CA&bn=PP%2dDonationsBF&charset=UTF%2d8
-Tags: wp clean up,clean,cleaner,cleanup,database,comments,posts,delete,optimize,revision,draft,auto draft,moderated,spam,trash
+Tags: wp clean up,clean,cleaner,cleanup,database,mysql,comments,posts,delete,optimize,revision,draft,auto draft,moderated,spam,trash
 License: GPLv2
 Requires at least: 2.7
 Tested up to: 3.4.2
@@ -13,8 +13,11 @@ WP Clean Up can help us to clean up the wordpress database by removing "revision
 == Description ==
 
 WP Clean Up can help us to clean up the wordpress database by removing "revision" "draft" "auto draft" "moderated comments" "spam comments" "trash comments".
+It adds a settings page to "Dashboard"->"Settings"->"WP Clean Up" where you can clean up the wordpress database.
+It allows you to remove the redundant data within few clicks.
+It is a effective tool to keep your database clean and surely save a lot of space of your MySQL Database.
 
-== Usage ==
+= Usage =
 
 1. Download and extract `wp-clean-up.zip` to `wp-content/plugins/`
 2. Activate the plugin through the 'Plugins' menu in WordPress.
