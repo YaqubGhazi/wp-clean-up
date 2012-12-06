@@ -7,7 +7,7 @@ Requires at least: 2.7
 Tested up to: 3.4.2
 Stable tag: 1.1.0
 
-WP Clean Up can help us to clean up the wordpress database by removing "revision" "draft" "auto draft" "moderated comments" "spam comments" "trash comments".
+WP Clean Up can help us to clean up the wordpress database by removing "revision" "draft" "auto draft" and so on.
 
 
 == Description ==
