@@ -3,7 +3,7 @@
 Plugin Name: WP Clean Up
 Plugin URI: http://boliquan.com/wp-clean-up/
 Description: WP Clean Up can help us to clean up the wordpress database by removing "revision" "draft" "auto draft" "moderated comments" "spam comments" "trash comments".
-Version: 1.1.0
+Version: 1.1.1
 Author: BoLiQuan
 Author URI: http://boliquan.com/
 Text Domain: WP-Clean-Up
@@ -18,67 +18,6 @@ function load_wp_clean_up_lang(){
 	}
 }
 add_filter('init','load_wp_clean_up_lang');
-
-function wp_clean_up($type){
-	global $wpdb;
-	switch($type){
-		case "revision":
-			$wcu_sql = "DELETE FROM $wpdb->posts WHERE post_type = 'revision'";
-			$wpdb->query($wcu_sql);
-			break;
-		case "draft":
-			$wcu_sql = "DELETE FROM $wpdb->posts WHERE post_status = 'draft'";
-			$wpdb->query($wcu_sql);
-			break;
-		case "autodraft":
-			$wcu_sql = "DELETE FROM $wpdb->posts WHERE post_status = 'auto-draft'";
-			$wpdb->query($wcu_sql);
-			break;
-		case "moderated":
-			$wcu_sql = "DELETE FROM $wpdb->comments WHERE comment_approved = '0'";
-			$wpdb->query($wcu_sql);
-			break;
-		case "spam":
-			$wcu_sql = "DELETE FROM $wpdb->comments WHERE comment_approved = 'spam'";
-			$wpdb->query($wcu_sql);
-			break;
-		case "trash":
-			$wcu_sql = "DELETE FROM $wpdb->comments WHERE comment_approved = 'trash'";
-			$wpdb->query($wcu_sql);
-			break;
-	}
-}
-
-function wp_clean_up_count($type){
-	global $wpdb;
-	switch($type){
-		case "revision":
-			$wcu_sql = "SELECT COUNT(*) FROM $wpdb->posts WHERE post_type = 'revision'";
-			$count = $wpdb->get_var($wcu_sql);
-			break;
-		case "draft":
-			$wcu_sql = "SELECT COUNT(*) FROM $wpdb->posts WHERE post_status = 'draft'";
-			$count = $wpdb->get_var($wcu_sql);
-			break;
-		case "autodraft":
-			$wcu_sql = "SELECT COUNT(*) FROM $wpdb->posts WHERE post_status = 'auto-draft'";
-			$count = $wpdb->get_var($wcu_sql);
-			break;
-		case "moderated":
-			$wcu_sql = "SELECT COUNT(*) FROM $wpdb->comments WHERE comment_approved = '0'";
-			$count = $wpdb->get_var($wcu_sql);
-			break;
-		case "spam":
-			$wcu_sql = "SELECT COUNT(*) FROM $wpdb->comments WHERE comment_approved = 'spam'";
-			$count = $wpdb->get_var($wcu_sql);
-			break;
-		case "trash":
-			$wcu_sql = "SELECT COUNT(*) FROM $wpdb->comments WHERE comment_approved = 'trash'";
-			$count = $wpdb->get_var($wcu_sql);
-			break;
-	}
-	return $count;
-}
 
 function wp_clean_up_settings_link($action_links,$plugin_file){
 	if($plugin_file==plugin_basename(__FILE__)){

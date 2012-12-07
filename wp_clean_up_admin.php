@@ -10,6 +10,69 @@ function wp_clean_up_page(){
 <h2>WP Clean Up</h2>
 
 <?php
+
+function wp_clean_up($type){
+	global $wpdb;
+	switch($type){
+		case "revision":
+			$wcu_sql = "DELETE FROM $wpdb->posts WHERE post_type = 'revision'";
+			$wpdb->query($wcu_sql);
+			break;
+		case "draft":
+			$wcu_sql = "DELETE FROM $wpdb->posts WHERE post_status = 'draft'";
+			$wpdb->query($wcu_sql);
+			break;
+		case "autodraft":
+			$wcu_sql = "DELETE FROM $wpdb->posts WHERE post_status = 'auto-draft'";
+			$wpdb->query($wcu_sql);
+			break;
+		case "moderated":
+			$wcu_sql = "DELETE FROM $wpdb->comments WHERE comment_approved = '0'";
+			$wpdb->query($wcu_sql);
+			break;
+		case "spam":
+			$wcu_sql = "DELETE FROM $wpdb->comments WHERE comment_approved = 'spam'";
+			$wpdb->query($wcu_sql);
+			break;
+		case "trash":
+			$wcu_sql = "DELETE FROM $wpdb->comments WHERE comment_approved = 'trash'";
+			$wpdb->query($wcu_sql);
+			break;
+	}
+}
+
+function wp_clean_up_count($type){
+	global $wpdb;
+	switch($type){
+		case "revision":
+			$wcu_sql = "SELECT COUNT(*) FROM $wpdb->posts WHERE post_type = 'revision'";
+			$count = $wpdb->get_var($wcu_sql);
+			break;
+		case "draft":
+			$wcu_sql = "SELECT COUNT(*) FROM $wpdb->posts WHERE post_status = 'draft'";
+			$count = $wpdb->get_var($wcu_sql);
+			break;
+		case "autodraft":
+			$wcu_sql = "SELECT COUNT(*) FROM $wpdb->posts WHERE post_status = 'auto-draft'";
+			$count = $wpdb->get_var($wcu_sql);
+			break;
+		case "moderated":
+			$wcu_sql = "SELECT COUNT(*) FROM $wpdb->comments WHERE comment_approved = '0'";
+			$count = $wpdb->get_var($wcu_sql);
+			break;
+		case "spam":
+			$wcu_sql = "SELECT COUNT(*) FROM $wpdb->comments WHERE comment_approved = 'spam'";
+			$count = $wpdb->get_var($wcu_sql);
+			break;
+		case "trash":
+			$wcu_sql = "SELECT COUNT(*) FROM $wpdb->comments WHERE comment_approved = 'trash'";
+			$count = $wpdb->get_var($wcu_sql);
+			break;
+	}
+	return $count;
+}
+
+
 	$wcu_message = '';
 
 	if(isset($_POST['wp_clean_up_revision'])){
@@ -58,7 +121,7 @@ function wp_clean_up_page(){
 ?>
 
 <p>
-<table class="widefat" style="width:36%;">
+<table class="widefat" style="width:419px;">
 	<thead>
 		<tr>
 			<th scope="col"><?php _e('Type','WP-Clean-Up'); ?></th>
