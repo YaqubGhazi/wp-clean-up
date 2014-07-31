@@ -106,11 +106,12 @@ function wp_clean_up_count($type){
 }
 
 function wp_clean_up_optimize(){
+	global $wpdb;
 	$wcu_sql = 'SHOW TABLE STATUS FROM `'.DB_NAME.'`';
-	$result = mysql_query($wcu_sql);
-	while($row = mysql_fetch_assoc($result)){
-		$wcu_sql = 'OPTIMIZE TABLE '.$row['Name'];
-		mysql_query($wcu_sql);
+	$result = $wpdb->get_results($wcu_sql);
+	foreach($result as $row){
+		$wcu_sql = 'OPTIMIZE TABLE '.$row->Name;
+		$wpdb->query($wcu_sql);
 	}
 }
 
@@ -360,23 +361,24 @@ function wp_clean_up_optimize(){
 	</thead>
 	<tbody id="the-list">
 	<?php
+		global $wpdb;
 		$total_size = 0;
 		$alternate = " class='alternate'";
 		$wcu_sql = 'SHOW TABLE STATUS FROM `'.DB_NAME.'`';
-		$result = mysql_query($wcu_sql);
+		$result = $wpdb->get_results($wcu_sql);
 
-		while($row = mysql_fetch_assoc($result)){
+		foreach($result as $row){
 
-			$table_size = $row['Data_length'] + $row['Index_length'];
+			$table_size = $row->Data_length + $row->Index_length;
 			$table_size = $table_size / 1024;
 			$table_size = sprintf("%0.3f",$table_size);
 
-			$every_size = $row['Data_length'] + $row['Index_length'];
+			$every_size = $row->Data_length + $row->Index_length;
 			$every_size = $every_size / 1024;
 			$total_size += $every_size;
 
 			echo "<tr". $alternate .">
-					<td class='column-name'>". $row['Name'] ."</td>
+					<td class='column-name'>". $row->Name ."</td>
 					<td class='column-name'>". $table_size ." KB"."</td>
 				</tr>\n";
 			$alternate = (empty($alternate)) ? " class='alternate'" : "";

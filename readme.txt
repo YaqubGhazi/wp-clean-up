@@ -51,7 +51,7 @@ Related Links:
 
 = 1.2.2 =
 
-* Some optimization
+* mysql_query is deprecated
 
 = 1.2.1 =
 
